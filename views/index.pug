@@ -1,0 +1,118 @@
+doctype html
+html
+  head
+    title Angular Example
+    //bootstrap links
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    //angular links
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js')
+    script(type='text/javascript', src='javascripts/index.js')
+    //data-table links
+    link(rel='stylesheet', href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+    link(rel='stylesheet', href='https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css')
+    style.
+      .container input{ /* You Can Name it what you want*/
+      margin-right:16px;
+      }
+      .table button{ /* You Can Name it what you want*/
+      margin-right:16px;
+      }
+  body(ng-app='myApp', ng-controller='studentController')
+    br
+    .container(style='background-color:lightgrey; width:90%')
+      // Form
+      form(ng-submit='createUser()')
+        h3.text-center Add User
+        hr
+        .form-group
+          .row
+            .col-md-2.col-md-offset-3
+              h4 Name :
+            .col-md-3
+              input.form-control(type='text', ng-model='user.name', placeholder='Enter Your Name', required='')
+        .form-group
+          .row
+            .col-md-2.col-md-offset-3
+              h4 Roll Number :
+            .col-md-3
+              input.form-control(type='text', ng-model='user.roll', placeholder='Enter Your Roll Number', required='')
+        .form-group
+          .row
+            .col-md-2.col-md-offset-3
+              h4 Email :
+            .col-md-3
+              input.form-control(type='text', ng-model='user.email', placeholder='Enter Your Email', required='')
+        .form-group
+          .row
+            .col-md-2.col-md-offset-3
+              h4 Mobile :
+            .col-md-3
+              input.form-control(type='text', ng-model='user.mobile', placeholder='Enter Your Mobile', required='')
+        .form-group
+          .row
+            .col-md-2.col-md-offset-3
+              h4 Branch :
+            .col-md-3
+              input.form-control(type='text', ng-model='user.dept', placeholder='Enter Your Branch', required='')
+        .form-group
+          .row
+            .col-md-2.col-md-offset-3
+              h4 college :
+            .col-md-3
+              input.form-control(type='text', ng-model='user.college', placeholder='Enter Your College', required='')
+        .col-md-offset-5.col-md-5
+          input.btn.btn-success.btn-sm(type='submit', value='submit', ng-show='submit')
+          input.btn.btn-success.btn-sm(type='button', value='update', ng-click='updateUser()', ng-show='update')
+          input.btn.btn-danger.btn-sm(type='button', value='cancel', ng-click='cancelUpdate()', ng-show='cancel')
+          br
+          br
+      // End Form
+    br
+    br
+    .container(style='background-color:lightgrey; width:90%')
+      // Users List
+      h3.text-center Users List
+      .table-responsive
+        table.table.table-striped#example
+          thead
+            tr
+              th Name
+              th Roll Number
+              th Email
+              th Mobile
+              th Branch
+              th College
+              th Action
+          tbody(ng-repeat='user in users')
+            tr
+              td {{user.name}}
+              td {{user.roll}}
+              td {{user.email}}
+              td {{user.mobile}}
+              td {{user.dept}}
+              td {{user.college}}
+              td
+                button.btn.btn-success.btn-sm(ng-click='editUser(user)') Edit
+                button.btn.btn-danger.btn-sm(ng-click='deleteUser(user)') Delete
+    br
+    //data-table links
+    script(type='text/javascript', src='https://code.jquery.com/jquery-3.3.1.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js')
+    script.
+      $(document).ready(function() {
+        $('#example').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+              { extend:'copy', attr: { id: 'allan' } }, 'csv', 'excel', 'pdf', 'print'
+          ]
+        });
+      });
